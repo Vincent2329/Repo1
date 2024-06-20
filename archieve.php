@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,43 +8,97 @@
     <title>Document</title>
 </head>
 <body>
+
+<body>
     <header>
-        <img src="" alt="">
-
-
+        <img src="" alt="" style="width: 50px; height: 50px; margin: 5px; margin-left: 20px; border-radius:50%; border: 1px solid black">
+        <p>hello</p>
     </header>
+
     <nav>
+        <div class="container">
             <div class="profile">
-                    <img src="" alt=""></img>
-                    <p>Admin</p>
+                <img src="" alt="" style="width:135px;height:135px;border-radius: 50%;border: 1px solid black">
+                <p>Admin</p>
+            </div>
+
+            <div class="button">
+                <div class="blank">
+                </div>
+
+                <div class="buttons">
+                    <button>APPLICATION</button>
+                    <button>EMPLOYEES</button>
+                    <button style="
+                    border-bottom-right-radius: 50px;
+                    ">PAYROLL</button>
+                    <button style="
+                    background-color: white;
+                    border-top-left-radius:50px;
+                    border-bottom-left-radius:50px;
+                    color:black;
+                    ">ARCHIVE</button>
+                    <button style="
+                    border-top-right-radius: 50px;
+                    ">LOGOUT</button>
                 </div>
             </div>
-           
-            <div class="container"> </div>
-
-                <div class="menu_list">
-                    <a href=""><button type="button" >APPLICATION</button></a>
-                    <a href=""><button type="button" >EMPLOYEES</button></a>
-                    <a href=""><button type="button" 
-                    style="border-bottom-right-radius:50px;">ARCHIVE</button></a>
-
-                    <a href=""><button type="button" 
-                    style="
-                    background-color:white;
-                    color: black;
-                    border-top-left-radius:50px;
-                    border-bottom-left-radius:50px;"
-                    >PAYROLL
-                    </button></a>
-
-                    <a href=""><button type="button" 
-                    style="border-top-right-radius:50px;">LOG-OUT</button></a>
-                </div>
+        </div>
     </nav>
+   
     <article>
-        <?php
-            echo "hello";
-        ?>
+    <div class="selection">
+        <select name="position" id="">
+            <Option>Technician</Option>
+            <Option></Option>
+            <Option></Option>
+            <Option></Option>
+        </select>
+    </div>
+
+        <div class="scrolldable-table">
+            <table border="1" cellpadding="0">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+            <tbody>
+            <tr>
+            
+            <?php
+                include 'conn.php';
+
+                $selectAll = "SELECT * FROM archive";
+
+                $query_selectAll = mysqli_query($conn, $selectAll);
+                if(mysqli_num_rows($query_selectAll) > 0){
+                    while($result = mysqli_fetch_assoc($query_selectAll)){
+            ?>
+                    <td><?php echo $result['Username']; ?></td>
+                    <td><?php echo $result['Name']; ?></td>
+                    <td><?php echo $result['Email']; ?></td>
+                    <td style="width:100px"><Button>Details</Button></td>
+            </tr>
+                    </tbody>
+            <?php
+                    }
+                }else{
+                    echo "Hello";
+                }
+
+            ?>
+            </table>
+        </div>
      </article>
 </body>
 </html>
+
+<?php
+    $conn = mysqli_connect("localhost", "root" , "", "DB");
+
+    
+?>
