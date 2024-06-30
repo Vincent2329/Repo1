@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="New folder/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style3.css">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
@@ -74,30 +74,31 @@
                     </div>
                     <div class="col-lg-12">
                     <div class="scrolldable-table">
-            <table border="1" cellpadding="0">
+            <table cellpadding="0">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th class="first">ID</th>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Action</th>
+                        <th class="last">Action</th>
                     </tr>
                 </thead>
             <tbody>
             <tr>
             
             
-            <?php
-                include 'conn.php';
+            <?php 
 
-                $selectAll = "SELECT * FROM ADMIN_payroll";
+                include 'conn.php';
+               
+                $selectAll = "SELECT * FROM employee_it_technician";
 
                 $query_selectAll = mysqli_query($conn, $selectAll);
                 if(mysqli_num_rows($query_selectAll) > 0){
                     foreach($query_selectAll as $result){
             ?>
                     <td><?= $result['ID']; ?></td>
-                    <td><?= $result['Name']; ?></td>
+                    <td><?= $result['Fname'] . " " .  $result['Lname']; ?></td>
                     <td><?= $result['Email']; ?></td>
                     <td style="width:100px"><a href="ADMIN_details_payroll.php?id=<?=$result['ID']; ?>"><Button type="submit" name="submit">Details</Button></a></td>
             </tr>
@@ -107,7 +108,7 @@
                 }else{
                     echo "Hello";
                 }
-
+            
             ?>
             </table>
         </div>
